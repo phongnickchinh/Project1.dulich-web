@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <title>Web du lịch cụa Phong</title>
+</head>
+<body>
+<!-- chèn navvbar trong thynmleaf -->
+<nav class="nav" >
+    
+    <ul class="main-nav">
+        <li><a  href="../guest/index.html" >Phong Travel</a></li>
+        <li><a href="../guest/index.html">Trang chủ</a></li>
+        <li><a href="../guest/tour.html">Danh mục Tour</a></li>
+        <li><a href="../guest/aboutUs.html">Chúng tôi</a></li>
+        <li><a href="../admin/login.html" class="logout-button">Đăng nhập</a></li>
+    </ul>
+</nav>
+    <!-- ảnh lớn chiếm hết màn hình đầu trang -->
+    <div class="firstPage">
+        <div class="firstPageImg">
+            <img src="https://cdn.pixabay.com/photo/2017/06/21/20/13/cloud-2428415_1280.jpg" alt="">
+            <div class="search-box">
+                <input class="search-box" type="text" name="" placeholder="Tìm kiếm">
+                <a class="search-btn" href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mainContent">
+        <!-- danh mục đề xuất -->
+        <div class="category">
+            <h2>Danh mục đề xuất</h2>
+            <div class="Tour-row-guest">
+                <div class="tour-infor-guest">
+                    <a href="tourInfor.html">
+                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                    </a>
+                    <div class="tour-Text-infor-guest">
+                        <div class="tour-Text-infor-guest1">
+                            <h3>Tên tour 5</h3>
+                            <p>6 ngày 5 đêm</p>
+                            <p>Hà nọi- Sapa -Hà Khẩu</p>
+                        </div>
+                        <div class="tour-Text-infor-guest2">
+                            <p>Giá: 5.000.000</p>
+                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-infor-guest">
+                    <a href="tourInfor.html">
+                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                    </a>
+                    <div class="tour-Text-infor-guest">
+                        <div class="tour-Text-infor-guest1">
+                            <h3>Tên tour 5</h3>
+                            <p>6 ngày 5 đêm</p>
+                            <p>Hà nọi- Sapa -Hà Khẩu</p>
+                        </div>
+                        <div class="tour-Text-infor-guest2">
+                            <p>Giá: 5.000.000</p>
+                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-infor-guest">
+                    <a href="tourInfor.html">
+                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                    </a>
+                    <div class="tour-Text-infor-guest">
+                        <div class="tour-Text-infor-guest1">
+                            <h3>Tên tour 5</h3>
+                            <p>6 ngày 5 đêm</p>
+                            <p>Hà nọi- Sapa -Hà Khẩu</p>
+                        </div>
+                        <div class="tour-Text-infor-guest2">
+                            <p>Giá: 5.000.000</p>
+                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-infor-guest">
+                    <a href="tourInfor.html">
+                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                    </a>
+                    <div class="tour-Text-infor-guest">
+                        <div class="tour-Text-infor-guest1">
+                            <h3>Tên tour 5</h3>
+                            <p>6 ngày 5 đêm</p>
+                            <p>Hà nội- Sapa -Hà Khẩu</p>
+                        </div>
+                        <div class="tour-Text-infor-guest2">
+                            <p>Giá: 5.000.000</p>
+                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Pham Phong Website</p>
+    </footer>
+<body>
+
+

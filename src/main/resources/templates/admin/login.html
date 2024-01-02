@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web du lịch cụa Phong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/login.css">
+    <script src="/src/main/resources/static/assets/js/main.js"></script>
+</head>
+
+<body >
+    <a href="../guest/index.html"><leftButton class="leftButton">Trang chủ</leftButton></a>
+    
+    <form method="post" class="loginForm" onsubmit="return checkLogin()">
+            <h1 class="loginHeader"><p>Đăng nhập<br/>(Quản trị viên)</p></h1>
+        </header>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="Tên đăng nhập" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Mật khẩu" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <footer class="footerLogin">
+        <p>&copy; 2023 Pham Phong Website</p>
+    </footer>
+</body>
+</html>

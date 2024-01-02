@@ -1,0 +1,71 @@
+:root {
+    --red: #FF8F8F;
+    --yellow:#EEF296;
+    --green: #9ADE7B;
+    --biggreen:#508D69;
+}
+
+
+.row {
+    display: block;
+    max-width: 90%;
+    /* căn giữa màn hih */
+    margin: 0 auto;
+}
+.dropdown-content {
+    display: flex;
+    flex-direction: row;
+    float:right;
+    z-index: 1;
+}
+.dropdown-content div{
+    margin-left: 10px;
+    /* căn giuqx div */
+    padding: 10px;
+
+}
+.dropdown-content select{
+    margin-top: 5px;
+    flex: 1;
+    align-items: center;
+    font: 1em sans-serif;
+}
+
+.box-tour-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    /* khoảng cách giữa các div space-bwteen */
+
+}
+
+.tour {
+    width: calc(33.33% - 10px); /* 10px là khoảng cách giữa các tour */
+    margin-bottom: 20px;
+    margin-left: 10px;
+    background-color:var(--green) ;
+}
+
+.tour img {
+    width: 100%;
+    height: auto;
+}
+
+.tour > div {
+    padding: 10px;
+}
+
+.tour > div > div {
+    margin-top: 10px;
+}
+.tour-body-text{
+    background-color: var(--green);
+}
+.tour-body-text p{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.tour-body-text h3{
+    margin-top: 5px;
+    margin-bottom: 15px;
+}

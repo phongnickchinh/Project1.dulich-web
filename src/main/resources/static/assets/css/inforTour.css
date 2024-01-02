@@ -1,0 +1,263 @@
+:root {
+    --red: #FF8F8F;
+    --yellow:#EEF296;
+    --green: #9ADE7B;
+    --biggreen:#508D69;
+}
+
+.mainContent h1{
+    margin-left: 5%;
+    padding-top: 20px;
+
+}
+
+#hiddenSetTourForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999; /* Đảm bảo form hiển thị trên các phần tử khác */
+    background-color: #fff;
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 13px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* thu nhỏ bớt */
+    width: 45%;
+    height: 500px;
+}
+#hiddenContactForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Đảm bảo form nằm trên các phần tử khác */
+}
+
+#hiddenContactForm h3 {
+    font-weight: bold;
+    text-align: center;
+}
+#hiddenContactForm .outForm {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+/* Thêm một lớp cho overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Một overlay mờ để tạo hiệu ứng nền xám khi form xuất hiện */
+    display: none;
+    z-index: 998; /* Đảm bảo overlay nằm dưới form nhưng trên các phần tử khác */
+}
+
+
+#hiddenSetTourForm form {
+    max-width: 600px;
+    max-height: 450px;
+    margin: 0 auto;
+}
+
+/* Thêm một nút đóng cho form */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.row {
+    display: flex;
+    max-width: 90%;
+    /* căn giữa màn hih */
+    margin: 0 auto;
+    justify-content: center;
+    border-radius: 5px;
+    /* khoarn cach giữa các div */
+
+}
+
+
+#hiddenSetTourForm h3 {
+    color: #333;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    text-align: center;
+    /* chữ đậm */
+    font-weight: bold;
+}
+
+
+.innerForm {
+    background-color: #f4f4f4;
+    padding: 015px;
+    border-radius: 8px;
+    max-height: 450px;
+}
+
+
+
+.rowForm {
+    margin-bottom: 5px;
+}
+.rowForm .formButtonSubmit{
+    max-width: 95%;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 10px;
+    width: 100%;
+    display: flex;
+    justify-content:flex-end;
+
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-block-start: 0px;
+}
+
+.rowFormLeft,
+.rowFormRight {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 1px;
+}
+
+input, select {
+    width: 90%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: var(--green);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.outForm{
+    float: right;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: var(--biggreen);
+}
+
+.imgAboutTour-col {
+    width: 70%;
+    display: flex;
+    margin-right: 20px;
+}
+
+.bigImgAboutTour {
+    flex: 1;
+    overflow: hidden;
+}
+
+.bigImgAboutTour img {
+    width: 95%;
+    height:fit-content;
+    border-radius: 5px;
+
+}
+
+.smallChoiceImg {
+    display: flex;
+    flex-direction: column;
+    /* cách đều theo hàng dọc */
+    justify-content: space-between;
+}
+
+.smallImg {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.smallImg img {
+    width: 110px; /* Điều chỉnh kích thước ảnh nhỏ */
+    height: auto;
+    border-radius: 5px;
+}
+
+.formTour-col{
+    /*tạo viền, đổ màu, bo góc*/
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.rowFormTour{
+    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.decripContent {
+    display: none;
+    max-height: 430px; /* Đặt chiều cao tối đa của tab */
+    overflow-y: auto;
+}
+
+.decripContent.active {
+    display: flex;
+    float: left;
+}
+
+.switchDecripTab ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    border: 1px solid #ccc; /* Viền ngoài */
+    border-radius: 5px; /* Bo tròn viền */
+}
+
+.switchDecripTabLabel {
+    flex: 1;
+    text-align: center;
+    font-weight: bold;
+}
+
+.switchDecripTabLabel a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    color: #333;
+}
+
+.switchDecripTabLabel a:hover {
+    background-color: var(--green);
+}

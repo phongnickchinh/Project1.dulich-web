@@ -1,0 +1,189 @@
+:root{  
+    --red: #FF8F8F;
+    --yellow:#EEF296;
+    --green: #9ADE7B;
+    --biggreen:#508D69;
+}
+
+.requestBoxContent {
+    flex-direction: column;
+    max-height:min-content;
+    background-color: #EEF296;
+}
+
+.requestInfor {
+    
+    max-width: 100%;
+    flex-grow: 1;
+    margin-left: 10px;
+    /* khoảng cách giữa các div trong class này */
+    max-height: min-content;
+}
+.request {
+    background-color: #EEF296;
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between; /* Giữ khoảng cách giữa hai phần */
+    /* bo góc */
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding-left: 5px; /* Thêm padding nếu cần */
+}
+
+.requestInforHeader {
+    display: flex;
+    justify-content: space-between;
+    /* giảm khoảng cách với div bên trên */
+    max-width: 70%;
+}
+
+.requestInforBody {
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    max-height: min-content;
+}
+
+.requestInforHeaderLeftText, .requestInforHeaderRightText {
+    font-weight: bold;
+    margin-left: auto;
+    margin-top: 5px;
+}
+
+.requestInforBodyRowUp,
+.requestInforBodyRowDown {
+    display: flex;
+    justify-content: space-between;
+}
+
+.requestProcess {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.requestStatus-0, .requestStatus-1, .info-button{
+    flex:0.75;
+    margin: 3px;
+}
+
+.col-25 {
+    display: none;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+.hiddenRequestInfor h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+
+.rowFormLeft,
+.rowFormRight {
+    width: 100%;
+    display: flex; /* Độ rộng của các cột trái và phải */
+}
+
+
+/* Tùy chỉnh các phần thông tin trong form */
+.innerForm p {
+    margin: 0;
+}
+.inner-row{
+    max-width: 100%;
+    max-height: 40px;
+    display: flex;
+    justify-content: right;
+    padding: 5px;
+    border-radius: 5px;
+}
+.dropdown-content{
+    margin-right: 20px;
+}
+
+
+.hiddenRequestInfor {
+    display: none;
+    max-width: 500px;
+    height: 300px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+h3 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.innerForm {
+    margin-top: 20px;
+}
+
+.rowForm {
+    margin-bottom: 10px;
+}
+
+.form-label {
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+label {
+    display: block;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+p {
+    margin: 0;
+}
+
+.rowFormLeft {
+    width: 50%;
+    float: left;
+}
+
+.rowFormRight {
+    width: 50%;
+    float: right;
+}
+.col-50 {
+    width: 50%;
+    text-align: center;
+}
+.col-50:hover {
+    background-color: var(--green);
+}
+.contactRequest .hiddenRequestInfor{
+    display: none;
+    max-width: 500px;
+    height: 200px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hiddenDiv {
+    display: none;
+}
+
+.visibleDiv {
+    display: block;
+}
+.selectedTab {
+    background-color: var(--biggreen);
+}

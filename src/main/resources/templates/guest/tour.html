@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/tour.css">
+    <title>Web du lịch cụa Phong</title>
+</head>
+<body>
+    <nav class="nav" >
+    
+        <ul class="main-nav">
+            <li><a  href="../guest/index.html" >Phong Travel</a></li>
+            <li><a href="../guest/index.html">Trang chủ</a></li>
+            <li><a href="../guest/tour.html">Danh mục Tour</a></li>
+            <li><a href="../guest/aboutUs.html">Chúng tôi</a></li>
+            <li><a href="../admin/login.html" class="logout-button">Đăng nhập</a></li>
+        </ul>
+    </nav>
+    <div class="mainContent">
+        <div clas="headMainContent">
+            <!-- thanh drop down lựa chọn kiẻu sắp xếp dữ liệu-->
+            <div class="row">
+                <div class="dropdown-content">
+                    <p>Hiển thị cả 3 kết quả</p>
+                    <div>
+                        <select name="Sắp xếp theo" id="filter-content">
+                            <option value="increPrice">Giá tăng dần</option>
+                            <option value="decrePrice">Giá giảm dần</option>
+                            <option value="increLenght">Thời gian tăng dần</option>
+                            <option value="decreLenght">Thời gian giảm dần</option>
+                            <option value="nearlyDate">Ngày khởi hành gần nhất</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+                
+            <div>
+                <div class="row">
+                    <div class="box-tour-content">
+                        
+                        <div class="tour">
+                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <div class="tour-body-text">
+                                <h3>Tên tour Sapa daily tour</h3>
+                                <p>6 ngày 5 đêm</p>
+                                <p>Hà nọi- Sapa -Hà Khẩu</p>
+                                <div>
+                                    <p>Giá: 5.000.000</p>
+                                    <a href="tourInfor.html" class="info-button">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour">
+                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <div class="tour-body-text">
+                                <h3>Tên tour Sapa daily tour</h3>
+                                <p>6 ngày 5 đêm</p>
+                                <p>Hà nọi- Sapa -Hà Khẩu</p>
+                                <div>
+                                    <p>Giá: 5.000.000</p>
+                                   <a href="tourInfor.html" class="info-button">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour">
+                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <div class="tour-body-text">
+                                <h3>Tên tour Sapa daily tour</h3>
+                                <p>6 ngày 5 đêm</p>
+                                <p>Hà nọi- Sapa -Hà Khẩu</p>
+                                <div>
+                                    <p>Giá: 5.000.000</p>
+                                   <a href="tourInfor.html" class="info-button">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour">
+                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <div class="tour-body-text">
+                                <h3>Tên tour Sapa daily tour</h3>
+                                <p>6 ngày 5 đêm</p>
+                                <p>Hà nọi- Sapa -Hà Khẩu</p>
+                                <div>
+                                    <p>Giá: 5.000.000</p>
+                                   <a href="tourInfor.html" class="info-button">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tour">
+                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <div class="tour-body-text">
+                                <h3>Tên tour Sapa daily tour</h3>
+                                <p>6 ngày 5 đêm</p>
+                                <p>Hà Khẩu - Bình Biên - Kiến Thuỷ - Mông Tự </p>
+                                <div>
+                                    <p>Giá: 5.000.000</p>
+                                   <a href="tourInfor.html" class="info-button">Chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+
+
+    </div>
+    <footer>
+        <p>&copy; 2023 Pham Phong Website</p>
+    </footer>
+</body>

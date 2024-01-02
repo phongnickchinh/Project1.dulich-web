@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Request Process</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/requestProcess.css">
+    <script src="/src/main/resources/static/assets/js/main.js"></script>
+    <script src="/src/main/resources/static/assets/js/requestProcess.js"></script>
+</head>
+<body>
+    <nav class="nav" >
+    
+        <ul class="main-nav">
+            <li><a  href="../admin/index.html" class="logo">Phong Travel</a></li>
+            <li><a href="../admin/index.html">Trang chủ</a></li>
+            <li><a href="../admin/tourManager.html">Danh mục Tour</a></li>
+            <li><a href="../admin/requestProcess.html">Phiếu yêu cầu</a></li>
+            <li><a href="login.html" class="logout-button">Đăng xuất</a></li>
+        </ul>
+    </nav>
+    <div  class="mainContent">
+        <div style="display: flex; justify-content: space-between;" class="row">
+            <div class="col-50" onclick="showTab('setTourRequest')" data-tab="setTourRequest">
+                <h2 class="requestHead"  >
+                    Yêu cầu đặt tour
+                </h2>
+            </div>
+            <div class="col-50" onclick="showTab('contactRequest')" data-tab="contactRequest">
+                <h2 class="requestHead" >
+                    Yêu cầu tư vấn
+                </h2>
+            </div>
+        </div>
+        <div class="tabContent visibleDiv" id="setTourReQuest">
+            <div class="row">
+                <div class="inner-row">
+                    <div class="col-25">
+                        <div class="dropdown-content">
+                            <div>
+                                <select name="Sắp xếp theo" id="filter-content">
+                                    <option value="newer">mới nhất</option>
+                                    <option value="older">cũ nhất</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-25">
+                        <div class="dropdown-content">
+                            <div>
+                                <select name="Trạng thái" id="filter-content">
+                                    <option value="all">Tất cả</option>
+                                    <option value="1">Đã xử lí</option>
+                                    <option value="0">Chưa xử lí</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request1" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus('request1')">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus('request1')">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor1')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor1" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin đặt tour:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="date">Ngày khởi hành: </label>
+                                    <p>30/12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">Số hành khách trên 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormLeft">
+                                    <label for="number">Số trẻ em từ 6 đến 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">số trẻ em dưới 6 tuổi: </label>
+                                    <p>12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request2" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus('request2')">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus('request2')">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor2')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor2" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin đặt tour:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="date">Ngày khởi hành: </label>
+                                    <p>30/12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">Số hành khách trên 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormLeft">
+                                    <label for="number">Số trẻ em từ 6 đến 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">số trẻ em dưới 6 tuổi: </label>
+                                    <p>12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request3" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus('request3')">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus('request3')">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor3')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor3" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin đặt tour:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="date">Ngày khởi hành: </label>
+                                    <p>30/12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">Số hành khách trên 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormLeft">
+                                    <label for="number">Số trẻ em từ 6 đến 11 tuổi:</label>
+                                    <p>12</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="number">số trẻ em dưới 6 tuổi: </label>
+                                    <p>12</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="tabContent hiddenDiv" id="contactRequest">
+            <div class="row">
+                <div class="inner-row">
+                    <div class="col-25">
+                        <div class="dropdown-content">
+                            <div>
+                                <select name="Sắp xếp theo" id="filter-content">
+                                    <option value="newer">mới nhất</option>
+                                    <option value="older">cũ nhất</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-25">
+                        <div class="dropdown-content">
+                            <div>
+                                <select name="Trạng thái" id="filter-content">
+                                    <option value="all">Tất cả</option>
+                                    <option value="1">Đã xử lí</option>
+                                    <option value="0">Chưa xử lí</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus()">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus()">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor4')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor4" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus()">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus()">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor5')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor5" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div  class="requestBoxContent">
+                    <div id="request" style="background-color: #EEF296;" class="request">
+                        <div class="requestInfor">
+                            <div class="requestInforHeader">
+                                <div class="requestInforHeaderLeft">
+                                    <p class="requestInforHeaderLeftText">Mã phiếu yêu cầu: SAPA10000007</p>
+                                </div>
+                                <div class="requestInforHeaderRight">
+                                    <p class="requestInforHeaderRightText">Thời gian yêu cầu: 01/01/2021 21:12</p>
+                                </div>
+                            </div>
+                            <div class="requestInforBody">
+                                <div class="requestInforBodyRowUp">
+                                    <p class="requestInforBodyLeftText">Tên khách hàng: Phạm Phong</p>
+                                    <p class="requestInforBodyRightText">Số điện thoại: 0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="requestProcess">
+                            <button style="display: none;" class="requestStatus-1" onclick="changeStatus()">Đã xử lí</button>
+                            <button  class="requestStatus-0" onclick="changeStatus()">Chưa xử lí</button>
+                            <button class="info-button" onclick="toggleForm('hiddenRequestInfor6')">Chi tiết</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hiddenRequestInfor" id="hiddenRequestInfor6" style="display: none;">
+                <h3>Thông tin chi tiết: SAPA1000000007</h3>
+                <form>
+                    <div class="innerForm">
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin tour</h4>
+                            <div class="rowForm">
+                                <p>Sapa daily 2 ngày 1 đêm</p>
+                            </div>
+                        </div>
+                        <div class="rowForm">
+                            <h4 class="form-label">Thông tin khách hàng:</h4>
+                            <div class="rowForm">
+                                <div class="rowFormLeft">
+                                    <label for="name">Họ và tên: </label>
+                                    <p>Phạm Phong</p>
+                                </div>
+                                <div class="rowFormRight">
+                                    <label for="phone">Số điện thoại: </label>
+                                    <p>0384742590</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Pham Phong Website</p>
+    </footer>
+</body>
+
+</html>

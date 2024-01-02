@@ -1,0 +1,202 @@
+:root{
+    --red: #FF8F8F;
+    --yellow:#EEF296;
+    --green: #9ADE7B;
+    --biggreen:#508D69;
+}
+.mainContent h1{
+    margin-left: 5%;
+    padding-top: 20px;
+
+}
+/* Định dạng cho hàng (row) */
+.row {
+    display: flex; /* Sắp xếp các phần tử con theo chiều ngang */
+    justify-content: space-between; /* Canh giữa các phần tử con */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    border: 1px solid #ddd; /* Viền 1px và màu xám nhạt */
+    border-radius: 8px; /* Bo góc 8px */
+    padding: 5px; /* Khoảng cách nội dung từ viền */
+    margin-left: 10px;
+}
+
+/* Định dạng cho cột bên trái (ID tour) */
+.col-content1 {
+    flex: 1; /* Cả cột chiếm một phần bằng nhau với các cột khác */
+}
+
+/* Định dạng cho cột bên phải (Tên tour và nút) */
+.col-content2 {
+    flex: 2; /* Cả cột chiếm hai phần bằng nhau với cột khác */
+}
+
+/* Định dạng cho nút và tiêu đề nút */
+.crudProcess {
+    display: flex; /* Sắp xếp các nút theo chiều ngang */
+}
+
+.info-button1 {
+    margin-right: 10px; /* Khoảng cách giữa các nút */
+    padding: 8px 16px; /* Kích thước nút */
+    background-color: var(--green); /* Màu nền xanh lá cây */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Không có đường viền */
+    border-radius: 4px; /* Bo góc 4px */
+    cursor: pointer; /* Đổi con trỏ khi di chuột qua nút */
+}
+
+.info-button1:hover {
+    background-color: var(--biggreen); /* Màu nền xanh lá cây đậm khi di chuột qua */
+}
+
+/* nút chính sửa màu vàng */
+.info-button2 {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #edd33b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.info-button2:hover {
+    background-color: #FFD700;
+}
+
+/* nút xóa màu đỏ */
+.info-button3 {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: var(--red);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.info-button3:hover {
+    background-color: #FF0000;
+}
+
+.switchDecripTab{
+    /* mở rộng hết div */
+    width: 100%;
+}
+.switchDecripTab ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    border: 1px solid #ccc; /* Viền ngoài */
+    border-radius: 5px; /* Bo tròn viền */
+}
+
+.switchDecripTabLabel {
+    flex: 1;
+    text-align: center;
+}
+
+.switchDecripTabLabel a {
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    color: #333;
+}
+
+.switchDecripTabLabel a:hover {
+    background-color: var(--green);
+}
+.hiddenManagerForm .row{
+    /* tắt viền */
+    border: none;
+}
+/* Style for the pop-up form container */
+/* Style for the pop-up form container */
+.hiddenManagerForm {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 38%;
+    left: 50%;
+    max-height: fit-content;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+/* Style for the form fields */
+.hiddenManagerForm form input {
+    width: 100%;
+    padding: 10px;
+    margin: 0px 0;
+}
+
+.hiddenFormTab {
+    display: none;
+}
+
+.showTab {
+    display: block;
+}
+.hiddenFormTab input {
+    width: 100%; /* Đặt chiều rộng là 100% của parent */
+    box-sizing: border-box; /* Đảm bảo rằng padding và border không làm thay đổi kích thước */
+    padding: 10px; /* Thêm padding nếu cần thiết */
+    margin-bottom: 5px; /* Thêm margin giữa các ô nhập liệu */
+}
+
+/* Style for the close button */
+#outForm {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Add some styles for the overlay/background */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 0;
+}
+.row .hiddenFormTab input{
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+}
+#imageUpload {
+    margin-top: 1px;
+}
+.col-252{
+display: block;
+}
+#confirmDeleteForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--yellow);
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}

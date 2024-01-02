@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="vi" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Web du lịch cụa Phong - Xử lí phiếu yêu cầu</title>
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/tourManager.css">
+    <link rel="stylesheet" href="/src/main/resources/static/assets/css/color.css">
+    <script src="/src/main/resources//static/assets/js/main.js" defer></script>
+
+</head>
+<nav class="nav" >
+    
+    <ul class="main-nav">
+        <li><a  href="../admin/index.html" class="logo">Phong Travel</a></li>
+        <li><a href="../admin/index.html">Trang chủ</a></li>
+        <li><a href="../admin/tourManager.html">Danh mục Tour</a></li>
+        <li><a href="../admin/requestProcess.html">Phiếu yêu cầu</a></li>
+        <li><a href="login.html" class="logout-button">Đăng xuất</a></li>
+    </ul>
+</nav>
+
+<body>
+    <div class="mainContent">
+        <h1>  Danh mục tour</h1>
+        <div class="row">
+            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
+            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
+            <div>
+                <div class="crudProcess">
+                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
+                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
+                    <button class="info-button3"> Xóa</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
+            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
+            <div>
+                <div class="crudProcess">
+                    <a href="../admin/tourInfor.html" ><button  class="info-button1"> Chi tiết</button></a>
+                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
+                    <button class="info-button3" onclick="openConfirmDeleteForm()"> Xóa</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
+            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
+            <div>
+                <div class="crudProcess">
+                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
+                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
+                    <button class="info-button3"> Xóa</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
+            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
+            <div>
+                <div class="crudProcess">
+                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
+                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
+                    <button class="info-button3" onclick="openConfirmDeleteForm()"> Xóa</button>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex;
+        justify-content: flex-end;" class="row">
+            <div col-content2>
+                <button class="info-button1" onclick="toggleForm('hiddenManagerForm')"> Thêm </button>
+            </div>
+        </div>
+        <div style="margin-top: 100px ;" id="hiddenManagerForm" class="hiddenManagerForm">
+        
+            <form>
+                <button id="outForm" onclick="closeDiv('hiddenManagerForm')">✖️</button>
+                <h3 style="font-weight: bolder;"> Tạo tour mới</h3>
+                
+                <div class="innerForm">
+                    <div class="col-252">
+                        
+                        <div class="col-25" style="order: 2;">
+                            <label for="imageUpload">Tải ảnh lên:</label>
+                            <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple>
+                        </div>
+                        <div style="margin-left: 
+                        10px;" class="formButtonSubmit" onclick="submitForm()">
+                            <button> Xác nhận</button>
+                        </div>
+                        
+                    </div>
+                    <div class="col-75">
+                        <div class="row">
+                            <input type="text" id="name" name="name" placeholder="Tên tour">
+                            <input type="text" id="lenght" name="lenght" placeholder="Độ dài tour">
+                        </div>
+                        <div class="row">
+                            <!-- diểm đến -->
+                            <input type="text" id="destination" name="destination" placeholder="Điểm đến">
+                            <input type="text" id="startDate" name="starDate" placeholder="Các ngày xuất phát">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="price" name="price" placeholder="Giá">
+                        </div>
+                        <div class="row">
+                            <div class="switchDecripTab">
+                                <ul>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('decriptionInput')">Mô tả</a>
+                                    </li>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('scheduleInput')">Lịch trình</a>
+                                    </li>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('noteInput')">Ghi chú</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                            
+                        <div style="height: 150px; width: 700px;" class="row">
+                            
+                            <div style="width: 100%; height: 100%;" class=" row hiddenFormTab" id="decriptionInput">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Mô tả"></textarea>
+                            </div>
+            
+                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="scheduleInput">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Lịch trình"></textarea>
+                            </div>
+            
+                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="noteInput">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Ghi chú"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div style="margin-top: 100px ;" id="hiddenManagerFormFix" class="hiddenManagerForm">
+        
+            <form>
+                <button id="outForm" onclick="closeDiv('hiddenManagerFormFix')">✖️</button>
+                <h3 style="font-weight: bolder;">Chỉnh sửa tour</h3>
+                <div class="innerForm">
+                    <div class="col-25" style="order: 2;">
+                        <label for="imageUpload">Tải ảnh lên:</label>
+                        <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple>
+                    </div>
+                    <div style="margin-left: 
+                        10px;" class="formButtonSubmit" onclick="submitForm()">
+                            <button> Xác nhận</button>
+                        </div>
+                    <div style="width: 100%; height: 100%;" class="col-25" style="order: 1;">
+                        <div id="imagePreviewContainer" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+                    </div>
+                    <div class="col-75">
+                        <div class="row">
+                            <input type="text" id="name" name="name" placeholder="Tên tour" value="Sapa daily tour 2 ngày 100 đêm">
+                            <input type="text" id="lenght" name="lenght" placeholder="Độ dài tour:" value=" 2N100D">
+                        </div>
+                        <div class="row">
+                            <!-- diểm đến -->
+                            <input type="text" id="destination" name="destination" placeholder="Điểm đến:" value="Hà Nội - Sapa - Giàng ta Chải - Hà Nội " >
+                            <input type="text" id="startDate" name="starDate" placeholder="Các ngày xuất phát" value="30/12, 1/1">
+                        </div>
+                        <div class="row">
+                            <input type="text" id="price" name="price" placeholder="Giá" value="5.000.000 đồng">
+                        </div>
+                        <div class="row">
+                            <div class="switchDecripTab">
+                                <ul>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('decriptionInputFix')">Mô tả</a>
+                                    </li>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('scheduleInputFix')">Lịch trình</a>
+                                    </li>
+                                    <li class="switchDecripTabLabel">
+                                        <a onclick="showTabText('noteInputFix')">Ghi chú</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                            
+                        <div style="height: 150px; width: 700px;" class="row">
+                            
+                            <div style="width: 100%; height: 100%;" class=" row hiddenFormTab" id="decriptionInputFix">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Mô tả"></textarea>
+                            </div>
+            
+                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="scheduleInputFix">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Lịch trình"></textarea>
+                            </div>
+            
+                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="noteInputFix">
+                                <textarea style="height: 100%; width: 100%;
+                                box-sizing: border-box;
+                                padding: 10px;
+                                margin-bottom: 10px;
+                                resize: vertical;" name="note" placeholder="Ghi chú"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Form xác nhận xoá -->
+        <!-- Form xác nhận xoá -->
+        <div id="confirmDeleteForm">
+            <p>Bạn có chắc chắn muốn xoá?</p>
+            <button onclick="confirmDelete()">Có</button>
+            <button onclick="cancelDelete()">Không</button>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2023 Pham Phong Website</p>
+    </footer>
+    
+</body>
+</html>
