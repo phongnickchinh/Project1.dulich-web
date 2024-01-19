@@ -115,13 +115,15 @@
     position: fixed;
     top: 38%;
     left: 50%;
-    max-height: fit-content;
+
     transform: translate(-50%, -50%);
     background-color: #ffffff;
     padding: 20px;
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 /* Style for the form fields */
@@ -199,4 +201,79 @@ display: block;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
+}
+.image-upload {
+    width: 25%; /* Mỗi div chiếm 1/4 chiều rộng của container cha */
+    float: left; /* Đảm bảo chúng xếp cùng một hàng */
+    box-sizing: border-box; /* Đảm bảo kích thước tính cả padding và border */
+    padding: 10px; /* Thêm padding nếu cần thiết */
+    text-align: center; /* Căn giữa nội dung trong div */
+}
+
+.image-preview {
+    max-width: 100%; /* Đảm bảo hình ảnh không vượt quá chiều rộng của div */
+    max-height: 100%; /* Đảm bảo hình ảnh không vượt quá chiều cao của div */
+    margin-bottom: 10px; /* Thêm khoảng cách dưới hình ảnh nếu cần thiết */
+}
+
+.image-upload button {
+    display: block; /* Hiển thị các nút trên mỗi dòng */
+    margin: 5px auto; /* Căn giữa nút trong div */
+
+    
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+/* Style for the overlay */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.popup button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* Green button style */
+.popup button.confirm {
+    background-color: var(--green);
+    color: white;
+}
+
+/* Red button style */
+.popup button.cancel {
+    background-color: var(--red);
+    color: white;
+}
+
+/* Hover effect for buttons */
+.popup button:hover {
+    background-color: #45a049;
+}
+
+.popup button.cancel:hover {
+    background-color: #ff3333;
 }

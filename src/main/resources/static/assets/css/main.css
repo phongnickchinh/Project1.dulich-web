@@ -13,6 +13,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
 }
+
 footer {
     text-align: center;
     padding: 3px;
@@ -153,7 +154,9 @@ căn giữa ảnh đầu trang */
 }
 .category {
     margin-top: 0px;
-    width: 90%;
+    width: 100%;
+    max-width: 1920px;
+    justify-content:baseline;
     /* khoản cách giữa các phần tửt */  
     
 }
@@ -177,8 +180,11 @@ căn giữa ảnh đầu trang */
 }
 .Tour-row-guest {
     display: flex;
+    margin-left: 10px;
     overflow-x: auto;
     width: 100%;
+    max-width: 1920px;
+    justify-content: flex-start;
 }
 .Tour-row-guest div {
     margin-right: 0px;
@@ -203,11 +209,17 @@ căn giữa ảnh đầu trang */
 .tour-infor-guest{
     background-color: var(--green);
 }
+.tour-infor-guest img{
+    width: 100%;
+    height: auto;
+
+    object-fit: cover;
+}
 
 /* Phần thông tin chi tiết của tour */
 .tour-Text-infor-guest1
  {/* Hiển thị theo chiều ngang */
-    width: 60%; /* Chia đôi không gian trong .tour-Text-infor-guest */
+    width: 70%; /* Chia đôi không gian trong .tour-Text-infor-guest */
 
     
 }

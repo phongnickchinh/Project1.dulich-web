@@ -87,12 +87,13 @@
     display: flex;
     max-width: 90%;
     /* căn giữa màn hih */
-    margin: 0 auto;
     justify-content: center;
     border-radius: 5px;
     /* khoarn cach giữa các div */
 
 }
+
+
 
 
 #hiddenSetTourForm h3 {
@@ -116,6 +117,19 @@
 
 .rowForm {
     margin-bottom: 5px;
+}
+
+.row-tourInfor{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.row-tourInforRight{
+    text-align: right;
+    display: flex;
+
 }
 .rowForm .formButtonSubmit{
     max-width: 95%;
@@ -185,9 +199,13 @@ button:hover {
 }
 
 .bigImgAboutTour img {
-    width: 95%;
-    height:fit-content;
+
+    width: 95%; /* chiều rộng */
+    /* chiều cao cố định */
+    height: 430px;
     border-radius: 5px;
+    /* cắt ảnh để không bị méo */
+    object-fit: cover;
 
 }
 
@@ -230,12 +248,19 @@ button:hover {
     display: none;
     max-height: 430px; /* Đặt chiều cao tối đa của tab */
     overflow-y: auto;
+    margin-left: 5%;
+}
+.decriptionContentTab{
+    /* thu nhỏ chiều dài của tab */
+    width: 90%;
 }
 
 .decripContent.active {
     display: flex;
     float: left;
 }
+
+
 
 .switchDecripTab ul {
     list-style: none;

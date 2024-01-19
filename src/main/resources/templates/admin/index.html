@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet">
     <title>Web du lịch cụa Phong</title>
 </head>
 <body>
@@ -14,11 +14,11 @@
 <nav class="nav" >
     
     <ul class="main-nav">
-        <li><a  href="../admin/index.html" >Phong Travel</a></li>
-        <li><a href="../admin/index.html">Trang chủ</a></li>
-        <li><a href="../admin/tourManager.html">Danh mục Tour</a></li>
-        <li><a href="../admin/requestProcess.html">Phiếu yêu cầu</a></li>
-        <li><a href="login.html" class="logout-button">Đăng xuất</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}" class="logo">Phong Travel</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}">Trang chủ</a></li>
+        <li><a th:href="@{/admin/manager}">Danh mục Tour</a></li>
+        <li><a th:href="@{/admin/requestProcess}">Phiếu yêu cầu</a></li>
+        <li><a th:href="@{/admin/login}" method="get" class="logout-button">Đăng xuất</a></li>
     </ul>
 </nav>
 <!-- ảnh lớn chiếm hết màn hình đầu trang -->
@@ -39,32 +39,10 @@
         <h2>Danh mục đề xuất</h2>
         <div class="productList">
             <div class="product-row">
-                <div>
-                    <img src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 1">
-                    <p>Tên tour 1</p>
+                <div th:each="tour : ${listTourIndex}">
+                    <img th:src="'data:image/jpg;base64,'+${tour.image1}" alt="Product 1">
+                    <p><span th:text="${tour.tourName}"></span></p>
                 </div>
-                <div>
-                    <img src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 2">
-                    <p>tên tour 2</p>
-                </div>
-                <div>
-                    <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 3">
-                    <p>Tên tour 3</p>
-                </div>
-                <div>
-                    <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 3">
-                    <p>Tên tour 3</p>
-                </div>
-                <div>
-                    <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 3">
-                    <p>Tên tour 3</p>
-                </div>
-                <div>
-                    <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Product 3">
-                    <p>Tên tour 3</p>
-                </div>
-                
-                
             </div>
         </div>
     </div>

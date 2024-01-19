@@ -3,91 +3,159 @@
 <head>
     <meta charset="UTF-8">
     <title>Web du lịch cụa Phong - Xử lí phiếu yêu cầu</title>
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
-    
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/tourManager.css">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/color.css">
-    <script src="/src/main/resources//static/assets/js/main.js" defer></script>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/tourManager.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/color.css}">
+    <script th:src="@{/assets/js/main.js}" defer></script>
+
 
 </head>
 <nav class="nav" >
     
     <ul class="main-nav">
-        <li><a  href="../admin/index.html" class="logo">Phong Travel</a></li>
-        <li><a href="../admin/index.html">Trang chủ</a></li>
-        <li><a href="../admin/tourManager.html">Danh mục Tour</a></li>
-        <li><a href="../admin/requestProcess.html">Phiếu yêu cầu</a></li>
-        <li><a href="login.html" class="logout-button">Đăng xuất</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}" class="logo">Phong Travel</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}">Trang chủ</a></li>
+        <li><a th:href="@{/admin/manager}">Danh mục Tour</a></li>
+        <li><a th:href="@{/admin/requestProcess}">Phiếu yêu cầu</a></li>
+        <li><a th:href="@{/admin/login}" method="get" class="logout-button">Đăng xuất</a></li>
     </ul>
 </nav>
 
 <body>
     <div class="mainContent">
         <h1>  Danh mục tour</h1>
-        <div class="row">
-            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
-            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
+        <div class="row" th:each= "tour:${listTour}">
+            <div class="col-content1"><h3>ID tour: <span th:text="${tour.id}"></span></h3></div>
+            <div class="col-content2"> <p>Tên tour: <span th:text="${tour.tourName}"></span></p></div>
             <div>
                 <div class="crudProcess">
-                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
-                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
-                    <button class="info-button3"> Xóa</button>
+                    <a th:href="@{'/admin/tourInfor?id=' + ${tour.id}}"<button  class="info-button1"> Chi tiết</button></a>
+                    <button class="info-button2" th:onclick="'toggleForm(\'hiddenManagerFormFix' + ${tour.id} + '\')'" > Chỉnh sửa</button>
+                    <button class="info-button3" onclick="showPopup()"> Xóa</button>
+
+                    <div style="margin-top: 100px ;" th:id="hiddenManagerFormFix +${tour.id}" class="hiddenManagerForm">
+                        <form th:action="@{/admin/manager/edit/ +${tour.id}}"  th:object="${tourEditFix}" enctype="multipart/form-data" method="post">
+                            <button id="outForm" th:onclick="'closeDiv(\'hiddenManagerFormFix' + ${tour.id} + '\')'" >✖️</button>
+                            <h3 style="font-weight: bolder;"> Chỉnh sửa: <span th:text="${tour.tourName}"></span></h3>
+                            
+                            <div class="innerForm">
+                                <div class="col-252">
+                                    
+                                    <div style="margin-left:
+                                    10px;" class="formButtonSubmit" onclick="submitForm()">
+                                        <button> Xác nhận</button>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-75">
+                                    <div class="row">
+                                        <input type="text" id="name" name="tourName"  placeholder="Tên tour" th:value="${tour.tourName}">
+                                        <input type="text" id="lenght" name="length"  placeholder="Độ dài tour" th:value="${tour.length}" >
+                                    </div>
+                                    <div class="row">
+                                        <!-- diểm đến -->
+                                        <input type="text" id="destination" name="schedule"  placeholder="Điểm đến" th:value="${tour.schedule}">
+                                        <input type="text" id="startDate" name="listStartDate" placeholder="Các ngày xuất phát" th:value="${tour.listStartDate}">
+                                    </div>
+                                    <div class="row">
+                                        <input type="text" id="price" name="price"  placeholder="Giá" th:value="${tour.price}">
+                                    </div>
+                                    <div class="row">
+                                        <div class="switchDecripTab">
+                                            <ul>
+                                                <li class="switchDecripTabLabel">
+                                                    <a onclick="showTabText('decriptionInputF')">Mô tả</a>
+                                                </li>
+                                                <li class="switchDecripTabLabel">
+                                                    <a onclick="showTabText('scheduleInputF')">Lịch trình</a>
+                                                </li>
+                                                <li class="switchDecripTabLabel">
+                                                    <a onclick="showTabText('noteInputF')">Ghi chú</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                        
+                                    <div style="height: 150px; width: 700px;" class="row">
+                                        
+                                        <div style="width: 100%; height: 100%;" class=" row hiddenFormTab" id="decriptionInputF">
+                                            <textarea style="height: 100%; width: 100%;
+                                            box-sizing: border-box;
+                                            padding: 10px;
+                                            margin-bottom: 10px;
+                                            resize: vertical;" name="description"  placeholder="Mô tả" th:value="${tour.description}"></textarea >
+                                        </div>
+                        
+                                        <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="scheduleInputF">
+                                            <textarea style="height: 100%; width: 100%;
+                                            box-sizing: border-box;
+                                            padding: 10px;
+                                            margin-bottom: 10px;
+                                            resize: vertical;" name="detailSchedule"  placeholder="Lịch trình" th:value="${tour.detailSchedule}"></textarea>
+                                        </div>
+                        
+                                        <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="noteInputF">
+                                            <textarea style="height: 100%; width: 100%;
+                                            box-sizing: border-box;
+                                            padding: 10px;
+                                            margin-bottom: 10px;
+                                            resize: vertical;" name="note"  placeholder="Ghi chú" th:value="${tour.note}"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-25">
+                                    <label for="imageUpload" style="display: block;">Tải ảnh lên:</label>
+                                    <!-- bao gồm 4 ảnh ở 4 input khác nhau, không cần dùng multifile -->
+                                    <div class="image-upload">
+                                        <input type="file" name="image1"  accept="image/*" onchange="previewImage(this, 'hiddenImage1','preview1F')">
+                                        <img id="preview1F" class="image-preview" alt="Preview" th:src="'data:image/jpg;base64,' +${tour.image1}">
+                                    </div>
+                                    <div class="image-upload">
+                                        <input type="file" name="image2"  accept="image/*" onchange="previewImage(this, 'hiddenImage2','preview2F')">
+                                        <img id="preview2F" class="image-preview" alt="Preview" th:src="'data:image/jpg;base64,' +${tour.image2}">
+                                    </div>
+                                    <div class="image-upload">
+                                        <input type="file" name="image3"  accept="image/*" onchange="previewImage(this, 'hiddenImage3','preview3F')">
+                                        <img id="preview3F" class="image-preview" alt="Preview"th:src="'data:image/jpg;base64,' +${tour.image3}">
+                                    </div>
+                                    <div class="image-upload">
+                                        <input type="file" name="image4"  accept="image/*" onchange="previewImage(this, 'hiddenImage4','preview4F')">
+                                        <img id="preview4F" class="image-preview" alt="Preview" th:src="'data:image/jpg;base64,' +${tour.image4}">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+            
+                    </div>
                 </div>
             </div>
+            <!-- Pop-up content -->
+            <div id="popup" class="popup">
+                <p>Bạn có chắc chắn muốn xoá? <span th:text="${tour.tourName}"></span></p>
+    <!-- Thêm input hidden để lưu trữ ID tour -->
+            <input type="hidden" id="tourIdToDelete" th:value="${tour.id}">
+            <button class="confirm" onclick="deleteTour()">Chắc chắn</button>
+            <button class="cancel" onclick="hidePopup()">Không</button>
         </div>
-        <div class="row">
-            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
-            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
-            <div>
-                <div class="crudProcess">
-                    <a href="../admin/tourInfor.html" ><button  class="info-button1"> Chi tiết</button></a>
-                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
-                    <button class="info-button3" onclick="openConfirmDeleteForm()"> Xóa</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
-            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
-            <div>
-                <div class="crudProcess">
-                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
-                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
-                    <button class="info-button3"> Xóa</button>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-content1"><h3>ID tour: SAPA1000000007</h3></div>
-            <div class="col-content2"> <p>Tên tour: SAPA daily tour 2 ngày 100 đêm</p></div>
-            <div>
-                <div class="crudProcess">
-                    <a href="../admin/tourInfor.html"><button  class="info-button1"> Chi tiết</button></a>
-                    <button class="info-button2" onclick="toggleForm('hiddenManagerFormFix')"> Chỉnh sửa</button>
-                    <button class="info-button3" onclick="openConfirmDeleteForm()"> Xóa</button>
-                </div>
-            </div>
-        </div>
+    </div> 
+
+        
         <div style="display: flex;
         justify-content: flex-end;" class="row">
             <div col-content2>
                 <button class="info-button1" onclick="toggleForm('hiddenManagerForm')"> Thêm </button>
             </div>
         </div>
-        <div style="margin-top: 100px ;" id="hiddenManagerForm" class="hiddenManagerForm">
+        <div style="margin-top: 100px ;" id="hiddenManagerForm" class="hiddenManagerForm" >
         
-            <form>
+            <form th:action="@{/admin/manager/create}"  th:object="${tourEdit}" enctype="multipart/form-data" method="post">
                 <button id="outForm" onclick="closeDiv('hiddenManagerForm')">✖️</button>
                 <h3 style="font-weight: bolder;"> Tạo tour mới</h3>
                 
                 <div class="innerForm">
                     <div class="col-252">
                         
-                        <div class="col-25" style="order: 2;">
-                            <label for="imageUpload">Tải ảnh lên:</label>
-                            <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple>
-                        </div>
-                        <div style="margin-left: 
+                        <div style="margin-left:
                         10px;" class="formButtonSubmit" onclick="submitForm()">
                             <button> Xác nhận</button>
                         </div>
@@ -95,16 +163,16 @@
                     </div>
                     <div class="col-75">
                         <div class="row">
-                            <input type="text" id="name" name="name" placeholder="Tên tour">
-                            <input type="text" id="lenght" name="lenght" placeholder="Độ dài tour">
+                            <input type="text" id="name" name="tourName"  placeholder="Tên tour">
+                            <input type="text" id="lenght" name="length"  placeholder="Độ dài tour">
                         </div>
                         <div class="row">
                             <!-- diểm đến -->
-                            <input type="text" id="destination" name="destination" placeholder="Điểm đến">
-                            <input type="text" id="startDate" name="starDate" placeholder="Các ngày xuất phát">
+                            <input type="text" id="destination" name="schedule"  placeholder="Điểm đến">
+                            <input type="text" id="startDate" name="listStartDate" placeholder="Các ngày xuất phát">
                         </div>
                         <div class="row">
-                            <input type="text" id="price" name="price" placeholder="Giá">
+                            <input type="text" id="price" name="price"  placeholder="Giá">
                         </div>
                         <div class="row">
                             <div class="switchDecripTab">
@@ -129,7 +197,7 @@
                                 box-sizing: border-box;
                                 padding: 10px;
                                 margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Mô tả"></textarea>
+                                resize: vertical;" name="description"  placeholder="Mô tả"></textarea>
                             </div>
             
                             <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="scheduleInput">
@@ -137,7 +205,7 @@
                                 box-sizing: border-box;
                                 padding: 10px;
                                 margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Lịch trình"></textarea>
+                                resize: vertical;" name="detailSchedule"  placeholder="Lịch trình"></textarea>
                             </div>
             
                             <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="noteInput">
@@ -145,101 +213,78 @@
                                 box-sizing: border-box;
                                 padding: 10px;
                                 margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Ghi chú"></textarea>
+                                resize: vertical;" name="note"  placeholder="Ghi chú"></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-25">
+                        <label for="imageUpload" style="display: block;">Tải ảnh lên:</label>
+                        <!-- bao gồm 4 ảnh ở 4 input khác nhau, không cần dùng multifile -->
+                        <div class="image-upload">
+                            <input type="file" name="image1"  accept="image/*" onchange="previewImage(this, 'hiddenImage1','preview1')">
+                            <img id="preview1" class="image-preview" alt="Preview">
+                        </div>
+                        <div class="image-upload">
+                            <input type="file" name="image2"  accept="image/*" onchange="previewImage(this, 'hiddenImage2','preview2')">
+                            <img id="preview2" class="image-preview" alt="Preview">
+                        </div>
+                        <div class="image-upload">
+                            <input type="file" name="image3"  accept="image/*" onchange="previewImage(this, 'hiddenImage3','preview3')">
+                            <img id="preview3" class="image-preview" alt="Preview">
+                        </div>
+                        <div class="image-upload">
+                            <input type="file" name="image4"  accept="image/*" onchange="previewImage(this, 'hiddenImage4','preview4')">
+                            <img id="preview4" class="image-preview" alt="Preview">
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-        <div style="margin-top: 100px ;" id="hiddenManagerFormFix" class="hiddenManagerForm">
         
-            <form>
-                <button id="outForm" onclick="closeDiv('hiddenManagerFormFix')">✖️</button>
-                <h3 style="font-weight: bolder;">Chỉnh sửa tour</h3>
-                <div class="innerForm">
-                    <div class="col-25" style="order: 2;">
-                        <label for="imageUpload">Tải ảnh lên:</label>
-                        <input type="file" id="imageUpload" name="images[]" accept="image/*" multiple>
-                    </div>
-                    <div style="margin-left: 
-                        10px;" class="formButtonSubmit" onclick="submitForm()">
-                            <button> Xác nhận</button>
-                        </div>
-                    <div style="width: 100%; height: 100%;" class="col-25" style="order: 1;">
-                        <div id="imagePreviewContainer" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
-                    </div>
-                    <div class="col-75">
-                        <div class="row">
-                            <input type="text" id="name" name="name" placeholder="Tên tour" value="Sapa daily tour 2 ngày 100 đêm">
-                            <input type="text" id="lenght" name="lenght" placeholder="Độ dài tour:" value=" 2N100D">
-                        </div>
-                        <div class="row">
-                            <!-- diểm đến -->
-                            <input type="text" id="destination" name="destination" placeholder="Điểm đến:" value="Hà Nội - Sapa - Giàng ta Chải - Hà Nội " >
-                            <input type="text" id="startDate" name="starDate" placeholder="Các ngày xuất phát" value="30/12, 1/1">
-                        </div>
-                        <div class="row">
-                            <input type="text" id="price" name="price" placeholder="Giá" value="5.000.000 đồng">
-                        </div>
-                        <div class="row">
-                            <div class="switchDecripTab">
-                                <ul>
-                                    <li class="switchDecripTabLabel">
-                                        <a onclick="showTabText('decriptionInputFix')">Mô tả</a>
-                                    </li>
-                                    <li class="switchDecripTabLabel">
-                                        <a onclick="showTabText('scheduleInputFix')">Lịch trình</a>
-                                    </li>
-                                    <li class="switchDecripTabLabel">
-                                        <a onclick="showTabText('noteInputFix')">Ghi chú</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                            
-                        <div style="height: 150px; width: 700px;" class="row">
-                            
-                            <div style="width: 100%; height: 100%;" class=" row hiddenFormTab" id="decriptionInputFix">
-                                <textarea style="height: 100%; width: 100%;
-                                box-sizing: border-box;
-                                padding: 10px;
-                                margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Mô tả"></textarea>
-                            </div>
-            
-                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="scheduleInputFix">
-                                <textarea style="height: 100%; width: 100%;
-                                box-sizing: border-box;
-                                padding: 10px;
-                                margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Lịch trình"></textarea>
-                            </div>
-            
-                            <div style="width: 100%; height: 100%;" class="row hiddenFormTab" id="noteInputFix">
-                                <textarea style="height: 100%; width: 100%;
-                                box-sizing: border-box;
-                                padding: 10px;
-                                margin-bottom: 10px;
-                                resize: vertical;" name="note" placeholder="Ghi chú"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
 
-        <!-- Form xác nhận xoá -->
-        <!-- Form xác nhận xoá -->
-        <div id="confirmDeleteForm">
-            <p>Bạn có chắc chắn muốn xoá?</p>
-            <button onclick="confirmDelete()">Có</button>
-            <button onclick="cancelDelete()">Không</button>
-        </div>
     </div>
-    <footer>
-        <p>&copy; 2023 Pham Phong Website</p>
-    </footer>
-    
 </body>
+<script>
+    function previewImage(input, hiddenInputId, previewId) {
+        var file = input.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById(previewId).src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    function showPopup() {
+        document.getElementById('popup').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+    }
+
+    function hidePopup() {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function deleteTour() {
+    // Lấy giá trị ID từ input hidden
+    var tourIdToDelete = document.getElementById('tourIdToDelete').value;
+
+    // Thực hiện logic xoá tour ở đây (có thể sử dụng Ajax để gửi ID đến controller)
+    // Ví dụ sử dụng Ajax
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/admin/manager/delete', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Xử lý kết quả từ controller nếu cần
+            alert('Tour đã được xoá!');
+            hidePopup();
+        }
+    };
+    xhr.send('id=' + tourIdToDelete);
+}
+</script>
 </html>
+
+
+

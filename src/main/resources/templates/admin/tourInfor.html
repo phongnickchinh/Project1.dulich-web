@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <title>Web du lịch của Phong</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/inforTour.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
     <!-- đường dẫn tới main.js -->
-    <script src="/src/main/resources//static/assets/js/main.js" defer></script>
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/inforTour.css}" rel="stylesheet">
+    <script th:src="@{/assets/js/main.js}" defer></script>
+    <script th:inline="javascript"></script>
 </head>
 
 <body>
@@ -18,53 +19,62 @@
 <nav class="nav" >
     
     <ul class="main-nav">
-        <li><a  href="../admin/index.html" >Phong Travel</a></li>
-        <li><a href="../admin/index.html">Trang chủ</a></li>
-        <li><a href="../admin/tourManager.html">Danh mục Tour</a></li>
-        <li><a href="../admin/requestProcess.html">Phiếu yêu cầu</a></li>
-        <li><a href="login.html" class="logout-button">Đăng xuất</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}" class="logo">Phong Travel</a></li>
+        <li><a th:href="@{/admin/homepageAdmin}">Trang chủ</a></li>
+        <li><a th:href="@{/admin/manager}">Danh mục Tour</a></li>
+        <li><a th:href="@{/admin/requestProcess}">Phiếu yêu cầu</a></li>
+        <li><a th:href="@{/admin/login}" method="get" class="logout-button">Đăng xuất</a></li>
     </ul>
 </nav>
-<div class="mainContent">
-    <h1>  SAPA daily 2 ngày 100 đêm</h1>
+<div class="mainContent" >
+    <h1>  <span th:text="${tour.tourName}"</span></h1>
     <div class="row">
         <div class="imgAboutTour-col">
             <div class="bigImgAboutTour">
-                <img src="https://cdn.pixabay.com/photo/2016/11/08/05/45/mae-1807562_1280.jpg" alt="">
+                <img id="mainImage" th:src="@{'data:image/jpg;base64,'+ ${listImage[0].image}}" alt="">
+                <!-- <div th:each=" img: ${listImage}">
+                    <img th:if="${img.imageNumber == 1}" th:src="'data:image/jpeg;base64,' + ${image.imageData}" alt="Tour Image">
+                </div> -->
             </div>
             <div class="smallChoiceImg">
-                <div class="smallImg">
-                    <img src="https://cdn.pixabay.com/photo/2016/11/08/05/45/mae-1807562_1280.jpg" alt="">
-                </div>
-                <div class="smallImg">
-                    <img src="https://cdn.pixabay.com/photo/2019/07/28/16/55/mountain-4369049_1280.jpg" alt="">
-                </div>
-                <div class="smallImg">
-                    <img src="https://cdn.pixabay.com/photo/2020/04/23/06/08/reform-5081228_1280.jpg" alt="">
-                </div>
-                <div class="smallImg">
-                    <img src="https://cdn.pixabay.com/photo/2016/11/14/04/17/buffalo-1822574_1280.jpg" alt="">
+                <div class="smallImg" th:each= "data: ${listImage}" th:onclick="'changeMainImage(\'pic' + ${data.id} + '\')'">
+                    <img th:id="'pic'+${data.id}" th:src="@{'data:image/jpg;base64,'+ ${data.image}}"  alt="pic" >
                 </div>
             </div>
         </div>
         <div class="formTour-col">
             <div class="tourInfor-form">
-                <h2>Liên hệ ngay</h2>
+                <h2>Thông tin</h2>
                 <div class="row-tourInfor">
-                    <div class="row-tourInforLeft"> Ngày khởi hành</div>
-                    <div class="row-tourInforRight"> 30/12, 1/1</div>
+                    <div class="row-tourInforLeft"> Khởi hành: </div>
+                    <div class="row-tourInforRight">
+                        <span th:each="start, iterStat : ${startDateTour}">
+                            <span th:text=" ${#calendars.format(start.startDate, 'dd/MM')}"></span><span th:if="${!iterStat.last}">,</span>
+                        </span>
+                    </div>
                 </div>
                 <div class="row-tourInfor">
                     <div class="row-tourInforLeft"> Thời gian: </div>
-                    <div  class="row-tourInforRight"> 2 ngày 1 đêm</div>
+                    <div  class="row-tourInforRight">
+                        <span th:text="${tour.length}"></span>
+                    </div>
                 </div>
                 <!-- lịch trình -->
                 <div class="row-tourInfor">
-                    <div class="row-tourInforLeft"> Lịch trình</div>
-                    <div class="row-tourInforRight"> Hà Nội - Sapa - Giàng ta Chải - Hà Nội</div>
+                    <div class="row-tourInforLeft"> Lịch trình:</div>
+                    <div class="row-tourInforRight">
+                        <span th:text="${tour.schedule}"></span>
+                    </div>
                 </div>
                 <div class="row-tourInfor">
-                    <div clas="row-tourInforCenter">5.000.000 đồng</div>
+                    <div class="row-tourInforLeft">
+                        Chi phí:
+                    </div>
+                    <div class="row-tourInforRight" id="price" >
+                        <span th:text="${#numbers.formatDecimal(tour.price, 0, 'COMMA', 0, 'POINT')}"></span> đồng/Người lớn
+
+                    </div>
+                    
                 </div>
                 <div class="row-tourInfor">
                     <div clas="row-tourInforCenter">
@@ -75,8 +85,8 @@
                     </script>
                 </div>
                 <div class="rowTourInfor">
-                    <p>Liên hệ càng sớm giá thành càng rẻ</p>
-                    <img src="../static/img/miniPhone/myPhone.png" alt="">
+                    <p style="color: red; text-align: center;">Liên hệ càng sớm càng nhiều ưu đãi</p>
+                    <img th:src="@{/img/myPhone.png}" alt="">
                     <button class="setContactForm" onclick="toggleForm('hiddenContactForm')"> Yêu cầu gọi lại</button>
                     
                 </div>
@@ -87,7 +97,9 @@
     <div id="hiddenContactForm" style="display: none;">
         <h3>Tư vấn cho tôi</h3>
         <button id="outForm" class="outForm">✖️</button>
-        <form>
+        <form >
+            <!-- một input hidden để lấy thông tin tour cho adviceRequest -->
+            <!-- <input type="hidden" name="tourId" th:value="${tour.id}" th:field="*{tour}"> -->
             
             <!-- tên khách hàng-->
             <div class="rowForm">
@@ -97,11 +109,11 @@
                 </div>
                 <div class="rowFormRight">
                     <label for="phone">Số điện thoại</label>
-                    <input type="text" id="phone" name="phone" >
+                    <input type="text" id="phone" name="phone"  >
                 </div>
             </div>
             <div class="rowForm">
-                <div class="formButtonSubmit" onclick="submitForm()">
+                <div class="formButtonSubmit" >
                     <button> Xác nhận</button>
                 </div>
             </div>
@@ -109,14 +121,14 @@
     </div>
     <div id="hiddenSetTourForm" style="display: none;">
         
-        <form>
+        <form  >
             <button id="outForm" class="outForm">✖️</button>
             <h3 style="font-weight: bolder;"> Đặt lịch ngay nhé</h3>
             <div class="innerForm">
                 <div class="rowForm">
                     <h4 class="form-label">Thông tin tour</h4>
                     <div class="rowForm">
-                        <p>Sapa daily 2 ngày 1 đêm</p>
+                        <p><Span th:text="${tour.tourName}"></Span></p>
                     </div>
                 </div>
                 <div class="rowForm">
@@ -128,11 +140,11 @@
                         </div>
                         <div class="rowFormRight">
                             <label for="phone">Số điện thoại</label>
-                            <input type="text" id="phone" name="phone" >
+                            <input type="text" id="phone" name="phone">
                         </div>
                         <div class="rowFormLeft">
                             <label for="email">Email</label>
-                            <input type="text" id="email" name="email" >
+                            <input type="text" id="email" name="email">
                         </div>
                         <div class="rowFormRight">
                             <label for="address">Địa chỉ</label>
@@ -152,23 +164,32 @@
                         </div>
                         <div class="rowFormRight">
                             <label for="number">Số hành khách trên 11 tuổi</label>
-                            <input type="number" id="number" name="number" >
+                            <input type="number" id="adults" name="number">
                         </div>
                     </div>
                     <div class="rowForm">
                         <div class="rowFormLeft">
                             <label for="number">Số trẻ em từ 6 đến 11 tuổi</label>
-                            <input type="number" id="number" name="number" >
+                            <input type="number" id="children6to11" name="number"  >
                         </div>
                         <div class="rowFormRight">
                             <label for="number">số trẻ em dưới 6 tuổi</label>
-                            <input type="number" id="number" name="number" >
+                            <input type="number" id="childrenUnder6" name="number">
                         </div>
                     </div>
                     <div class="rowForm">
-                        <div class="formButtonSubmit" onclick="submitForm()">
-                            <button> Xác nhận</button>
+                        <div class="rowFormLeft">
+                            <!-- tổng số tiền: tính bằng 100%(sô người lớn x price)+70%(trẻ từ 6 đến 11 tuổi)+ 30%(trẻ dưới 6 tuổi) -->
+                            <label for="number">Tổng số tiền</label>
+                            <span id="totalPrice">0 đồng</span>
+                            
                         </div>
+                        <div class="rowFormRight">
+                            <div class="formButtonSubmit" onclick="submitForm()">
+                                <button> Xác nhận</button>
+                            </div>
+                        </div>
+                        
                     </div>
 
                 </div>
@@ -196,47 +217,19 @@
                 <div id="tabDecription" class="decripContent active">
                     <div class="decriptionContentTab">
                         <h2 classs="titleDecriptionTab">Mô tả</h2>
-                        <p>Sapa - Lào Cai - Việt Nam là một điểm đến hấp dẫn với cảnh quan thiên nhiên tuyệt đẹp và văn hóa độc đáo. Nằm ở vùng núi cao phía Bắc của Việt Nam, Sapa có khí hậu mát mẻ quanh năm và được bao phủ bởi những dãy núi hùng vĩ.</p>
-                        <p>Đến Sapa, du khách có thể khám phá những cánh đồng bậc thang xanh mướt, nơi được trồng lúa bậc thang từ hàng trăm năm nay. Ngoài ra, Sapa còn có nhiều bản làng của các dân tộc thiểu số như H'Mong, Dao, và Tay, mang đến cho du khách những trải nghiệm văn hóa độc đáo.</p>
-                        <p>Khám phá Sapa, du khách cũng có thể leo núi Fansipan - đỉnh núi cao nhất của Việt Nam, tham quan các thác nước tuyệt đẹp như Thác Bạc và Thác Cát Cát, hay tham gia các hoạt động như đi bộ đường dài và thăm các thị trấn xung quanh.</p>
-                        <p>Sapa - Lào Cai - Việt Nam là một điểm đến không thể bỏ qua đối với những ai yêu thích thiên nhiên và muốn khám phá văn hóa đa dạng của dân tộc Việt Nam.</p>
+                        <span th:utext="${tour.description}"></spant>
                     </div>
                 </div>
                 <div id="tabSchedule" class="decripContent">
                     <div class="decriptionContentTab">
                         <h2 classs="titleScheduleTab">Lịch trình</h2>
-                        <h3 class="scheduleInDay">Ngày 1: Hà Nội - Sapa - Giàng Ta Chải</h3>
-                        <p>Đón khách tại điểm hẹn, khởi hành đi Sapa. Trên đường đi, quý khách sẽ được ngắm nhìn những cánh đồng bậc thang xanh mướt, nơi được trồng lúa bậc thang từ hàng trăm năm nay. Ngoài ra, Sapa còn có nhiều bản làng của các dân tộc thiểu số như H'Mong, Dao, và Tay, mang đến cho du khách những trải nghiệm văn hóa độc đáo.</p>
-                        <p>Đến Sapa, quý khách sẽ được tham quan thị trấn Sapa, nơi có khí hậu mát mẻ quanh năm và được bao phủ bởi những dãy núi hùng vĩ. Quý khách sẽ được tham quan các thác nước tuyệt đẹp như Thác Bạc và Thác Cát Cát, hay tham gia các hoạt động như đi bộ đường dài và thăm các thị trấn xung quanh.</p>
-                        <h3 class="scheduleInDay">Ngày 2: Giàng Ta Chải - Sapa - Hà Nội</h3>
-                        <p>Quý khách sẽ được tham quan các thác nước tuyệt đẹp như Thác Bạc và Thác Cát Cát, hay tham gia các hoạt động như đi bộ đường dài và thăm các thị trấn xung quanh.</p>
-                        <p>Trở về Hà Nội, kết thúc chương trình.</p>
+                        <span th:utext="${tour.detailSchedule}"></span>
                     </div>
                 </div>
                 <div id="tabNote" class="decripContent">
                     <div  class="decriptionContentTab">
                         <h2 classs="titleNoteTab">Ghi chú</h2>
-                        <p>Giá tour đã bao gồm:</p>
-                        <p> - Xe đưa đón khách theo chương trình.</p>
-                        <p> - Hướng dẫn viên tiếng Việt.</p>
-                        <p> - Ăn uống theo chương trình.</p>
-                        <p> - Vé tham quan theo chương trình.</p>
-                        <p> - Bảo hiểm du lịch.</p>
-                        <p>Giá tour không bao gồm:</p>
-                        <p> - Chi phí cá nhân.</p>
-                        <p> - Chi phí ăn uống ngoài chương trình.</p>
-                        <p> - Chi phí tham quan ngoài chương trình.</p>
-                        <p> - Chi phí phát sinh do thiên tai, bão lụt, đình công, giãn cách xã hội,...</p>
-                        <p> - Chi phí phát sinh khác ngoài chương trình.</p>
-                        <p> - Giá tour trẻ em:</p>
-                        <p> + Trẻ em dưới 5 tuổi: Miễn phí.</p>
-                        <p> + Trẻ em từ 5 - 11 tuổi: 50% giá tour.</p>
-                        <p> + Trẻ em trên 12 tuổi: Giá tour như người lớn.</p>
-                        <p> - Giá tour áp dụng cho nhóm 10 khách trở lên.</p>
-                        <p> - Giá tour có thể thay đổi vào các ngày lễ, tết.</p>
-                        <p> - Giá tour có thể thay đổi theo số lượng khách.</p>
-                        <p> - Giá tour có thể thay đổi theo thời điểm.</p>
-                        <p> - Giá tour có thể thay đổi theo yêu cầu của khách hàng. <br></p>
+                        <span th:utext="${tour.note}"></span>
                     </div>
                 </div>
             </div>
@@ -247,4 +240,13 @@
     <p>&copy; 2023 Pham Phong Website</p>
 </footer>
 </body>
+<script>
+        function changeMainImage(imageId) {
+        // Lấy đường dẫn của ảnh nhỏ từ id
+        var imagePath = document.getElementById(imageId).src;
+        
+        // Thay đổi src của hình ảnh lớn
+        document.getElementById('mainImage').src = imagePath;
+    }
+</script>
 </html>

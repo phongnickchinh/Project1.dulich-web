@@ -7,21 +7,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/login.css">
-    <script src="/src/main/resources/static/assets/js/main.js"></script>
+<link th:href="@{/assets/css/main.css}" rel="stylesheet">
+<link th:href="@{/assets/css/login.css}" rel="stylesheet">
+<script th:src="@{/assets/js/main.js}"></script>
 </head>
 
 <body >
-    <a href="../guest/index.html"><leftButton class="leftButton">Trang chủ</leftButton></a>
+    <a th:href="@{/guest/homepageGuest}"><leftButton class="leftButton">Trang chủ</leftButton></a>
     
-    <form method="post" class="loginForm" onsubmit="return checkLogin()">
+    <form th:action="@{/admin/login}" method="post" th:object="${admin}"class="loginForm" >
             <h1 class="loginHeader"><p>Đăng nhập<br/>(Quản trị viên)</p></h1>
         </header>
         <label for="username">Username:</label>
-        <input type="text" id="username" name="Tên đăng nhập" required>
+        <input type="text" id="username" name="Tên đăng nhập" th:field="*{username}"  required>
         <label for="password">Password:</label>
-        <input type="password" id="password" name="Mật khẩu" required>
+        <input type="password" id="password" name="Mật khẩu" th:field="*{password}" required>
 
         <button type="submit">Login</button>
     </form>

@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/src/main/resources/static/assets/css/main.css">
+    <link th:href="@{/assets/css/main.css}" rel="stylesheet">
     <title>Web du lịch cụa Phong</title>
 </head>
 <body>
@@ -14,11 +14,11 @@
 <nav class="nav" >
     
     <ul class="main-nav">
-        <li><a  href="../guest/index.html" >Phong Travel</a></li>
-        <li><a href="../guest/index.html">Trang chủ</a></li>
-        <li><a href="../guest/tour.html">Danh mục Tour</a></li>
-        <li><a href="../guest/aboutUs.html">Chúng tôi</a></li>
-        <li><a href="../admin/login.html" class="logout-button">Đăng nhập</a></li>
+        <li><a th:href="@{/guest/homepageGuest}" >Phong Travel</a></li>
+        <li><a th:href="@{/guest/homepageGuest}">Trang chủ</a></li>
+        <li><a th:href="@{/guest/tour}">Danh mục Tour</a></li>
+        <li><a th:href="@{/guest/aboutUs}">Chúng tôi</a></li>
+        <li><a th:href="@{/admin/login}" method="get" th class="logout-button">Đăng nhập</a></li>
     </ul>
 </nav>
     <!-- ảnh lớn chiếm hết màn hình đầu trang -->
@@ -36,74 +36,25 @@
     <div class="mainContent">
         <!-- danh mục đề xuất -->
         <div class="category">
-            <h2>Danh mục đề xuất</h2>
+            <h2 style="margin-left:5%;">Danh mục đề xuất</h2>
             <div class="Tour-row-guest">
-                <div class="tour-infor-guest">
-                    <a href="tourInfor.html">
-                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                <div class="tour-infor-guest" th:each=" data : ${listTourIndex}">
+                    <a th:href="@{'/guest/tourInfor?id=' + ${data.id}}" >
+                        <img style="size: 300px;" th:src="'data:image/jpg;base64,'+${data.image1}" alt="Tour 3">
                     </a>
                     <div class="tour-Text-infor-guest">
                         <div class="tour-Text-infor-guest1">
-                            <h3>Tên tour 5</h3>
-                            <p>6 ngày 5 đêm</p>
-                            <p>Hà nọi- Sapa -Hà Khẩu</p>
+                            <h3> <span th:text="${data.tourName}"></span></h3>
+                            <p><span th:text="${data.length}"></span></p>
+                            <p><span th:text="${data.schedule}"></span></p>
                         </div>
                         <div class="tour-Text-infor-guest2">
-                            <p>Giá: 5.000.000</p>
-                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="tour-infor-guest">
-                    <a href="tourInfor.html">
-                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
-                    </a>
-                    <div class="tour-Text-infor-guest">
-                        <div class="tour-Text-infor-guest1">
-                            <h3>Tên tour 5</h3>
-                            <p>6 ngày 5 đêm</p>
-                            <p>Hà nọi- Sapa -Hà Khẩu</p>
-                        </div>
-                        <div class="tour-Text-infor-guest2">
-                            <p>Giá: 5.000.000</p>
-                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="tour-infor-guest">
-                    <a href="tourInfor.html">
-                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
-                    </a>
-                    <div class="tour-Text-infor-guest">
-                        <div class="tour-Text-infor-guest1">
-                            <h3>Tên tour 5</h3>
-                            <p>6 ngày 5 đêm</p>
-                            <p>Hà nọi- Sapa -Hà Khẩu</p>
-                        </div>
-                        <div class="tour-Text-infor-guest2">
-                            <p>Giá: 5.000.000</p>
-                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="tour-infor-guest">
-                    <a href="tourInfor.html">
-                        <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
-                    </a>
-                    <div class="tour-Text-infor-guest">
-                        <div class="tour-Text-infor-guest1">
-                            <h3>Tên tour 5</h3>
-                            <p>6 ngày 5 đêm</p>
-                            <p>Hà nội- Sapa -Hà Khẩu</p>
-                        </div>
-                        <div class="tour-Text-infor-guest2">
-                            <p>Giá: 5.000.000</p>
-                            <a style="margin-right: 20px;" href="../guest/tourInfor.html" class="info-button">Chi tiết</a>
+                            <p>Giá: <span th:text="${#numbers.formatDecimal(data.price, 0, 'COMMA', 0, 'POINT')}"> đồng</span></p>
+                            <a style="margin-right: 20px;" th:href="@{'/guest/tourInfor?id=' + ${data.id}}" class="info-button">Chi tiết</a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
     <footer>

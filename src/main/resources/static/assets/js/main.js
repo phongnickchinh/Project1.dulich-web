@@ -61,33 +61,11 @@ function changeStatus() {
     }
 }
 
-var closeButton = document.getElementById('outForm');
-var form = document.getElementById('hiddenSetTourForm');
-var overlay = document.getElementById('overlay');
-
-closeButton.addEventListener('click', function() {
-    form.style.display = "none";
-    overlay.style.display = "none";
+document.getElementById("outForm").addEventListener("click", function() {
+    document.getElementById("hiddenContactForm").style.display = "none";
 });
 
-function submitForm() {
-    var name = document.getElementById('name').value;
-    var phone = document.getElementById('phone').value;
-    var address = document.getElementById('address').value;
-    var startDate = document.getElementById('startDate').value;
-    var number = document.getElementById('number').value;
 
-    if (name && phone && address && startDate && number) {
-        showConfirmationMessage();
-        // Hiển thị lại form sau 3 giây
-        setTimeout(function () {
-            document.getElementById('hiddenSetTourForm').style.display = "block";
-            document.getElementById('confirmationMessage').style.display = "none";
-        }, 1000);
-    } else {
-        alert('Vui lòng điền đầy đủ thông tin bắt buộc.');
-    }
-}
 
 function showConfirmationMessage() {
     document.getElementById('hiddenSetTourForm').style.display = "none";
