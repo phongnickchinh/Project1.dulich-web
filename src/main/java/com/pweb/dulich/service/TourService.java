@@ -13,5 +13,6 @@ public interface TourService  {
     public void editTour(Tour tour);
     public Tour getTourByTourName(String tourName);
     public void deleteTour(Long id);
+    public List<Tour> searchTour(String search);
     
 }

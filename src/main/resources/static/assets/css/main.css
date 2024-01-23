@@ -145,6 +145,59 @@ căn giữa ảnh đầu trang */
     color: #fff;/* Đổi màu chữ khi focus */
 }
 
+/* Định dạng cho preview-list */
+.preview-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    width: calc(100% - 20px);
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    top: 100%; /* Hiển thị ngay dưới thanh tìm kiếm */
+    left: 10px; /* Điều chỉnh vị trí bên trái */
+}
+
+/* Thiết lập style cho mỗi phần tử trong preview-list */
+.preview-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    cursor: pointer;
+
+    color: #000;
+}
+.search-btn{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    opacity: 0.8;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+
+/* Hover effect cho mỗi phần tử trong preview-list */
+.preview-list li:hover {
+    background-color: #f0f0f0;
+}
+
 .row {
     display: block;
     max-width: 90%; 

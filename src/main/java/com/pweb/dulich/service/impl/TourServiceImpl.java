@@ -65,4 +65,11 @@ public class TourServiceImpl implements TourService {
         //xóa tour
         tourRepository.deleteById(id);
     }
+
+    @Override
+    public List<Tour> searchTour(String search) {
+        //tìm kiếm các tour chứa chuỗi search trong schedule
+        return tourRepository.findByScheduleContaining(search);
+
+    }
 }

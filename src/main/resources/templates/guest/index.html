@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,6 +10,40 @@
     <link th:href="@{/assets/css/main.css}" rel="stylesheet">
     <title>Web du lịch cụa Phong</title>
 </head>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $(".search-box input").on("input", function() {
+            var searchValue = $(this).val().toLowerCase();
+
+            /*[[(${tourNameList})]] sẽ chứa danh sách tourNameList từ model attribute*/
+            var tourNameList = /*[[(${tourNameList})]]*/ [];
+
+            var filteredList = tourNameList.filter(function(tourName) {
+                return tourName.toLowerCase().includes(searchValue);
+            });
+
+            var previewList = $(".search-box .preview-list");
+            previewList.empty();
+            filteredList.forEach(function(tourName) {
+                previewList.append("<li onclick=\"updateSearchInput(\'"+ tourName + "\')\">" + tourName + "</li>");
+            });
+
+            if (searchValue.length > 0) {
+                showPreview();
+            } else {
+                hidePreview();
+            }
+        });
+
+        function showPreview() {
+            $(".search-box .preview-list").show();
+        }
+
+        function hidePreview() {
+            $(".search-box .preview-list").hide();
+        }
+    });
+</script>
 <body>
 <!-- chèn navvbar trong thynmleaf -->
 <nav class="nav" >
@@ -26,10 +61,13 @@
         <div class="firstPageImg">
             <img src="https://cdn.pixabay.com/photo/2017/06/21/20/13/cloud-2428415_1280.jpg" alt="">
             <div class="search-box">
-                <input class="search-box" type="text" name="" placeholder="Tìm kiếm">
+                <input class="search-box" id="searchBoxInput" type="text" name="scheduleSearch" placeholder="Tìm kiếm">
                 <a class="search-btn" href="#">
-                    <i class="fas fa-search"></i>
+                    <button type="submit" onclick="searchTour()" > Tìm kiếm
+                        <a th:href="@{/tour/searchTour(scheduleSearch=${scheduleSearch})}" id="searchLink" style="display: none;"> Tìm kiếm</a>
+                    </button>
                 </a>
+                <ul class="preview-list"></ul>
             </div>
         </div>
     </div>
@@ -61,5 +99,24 @@
         <p>&copy; 2023 Pham Phong Website</p>
     </footer>
 <body>
+    <script>
+    function updateSearchInput(value) {
+        // Lấy ra phần tử input
+        var searchInput = document.getElementById('searchBoxInput');
+        
+        // Gán giá trị từ thẻ li vào input
+        searchInput.value = value;
+
+        // Ẩn danh sách xem trước
+        document.querySelector('.preview-list').style.display = 'none';
+    }
+    function searchTour() {
+        var scheduleSearch = document.getElementById('searchBoxInput').value;
+        document.getElementById('searchLink').href = "/guest/tour/searchTour?scheduleSearch=" + encodeURIComponent(scheduleSearch);
+        document.getElementById('searchLink').click();
+    }
+    </script>
+</html>
+```
 
 

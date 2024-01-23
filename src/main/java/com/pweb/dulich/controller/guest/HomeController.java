@@ -37,6 +37,7 @@ public class HomeController {
     public String homePageGuest(Model model) {
         //lấy 5 tour có id lớn nhất
         List<Tour> listTour = tourService.getfiveTourNearist();
+        List<Tour> fullTour = tourService.getAllTour();
         //tour có thuộc tính private List<Image> images, lấy ra ảnh có imageNumber = 1
         List<TourIndex> listTourIndex = new ArrayList<>();
         for (Tour tour : listTour) {
@@ -54,8 +55,21 @@ public class HomeController {
             tourIndex.setImage1(imagebase64);
             listTourIndex.add(tourIndex);
         }
+
+        List<String> scheduleList = new ArrayList<>();
+        for (Tour tour : fullTour) {
+            //kiểm tra null và kiểm tra rỗng
+            if (tour.getSchedule() != null && !tour.getSchedule().isEmpty()) {
+                scheduleList.add(tour.getSchedule());
+            }
+        }
+        //in ra scheduleList
+        for (String schedule : scheduleList) {
+            System.out.println(schedule);
+        }
         //gửi listTourIndex lên view
         model.addAttribute("listTourIndex", listTourIndex);
+        model.addAttribute("tourNameList", scheduleList);
         return "guest/index";
     }
 

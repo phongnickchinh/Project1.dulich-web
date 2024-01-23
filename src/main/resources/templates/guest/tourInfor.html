@@ -87,9 +87,6 @@
                     <div clas="row-tourInforCenter">
                         <button class="setTourBtn" onclick="toggleForm('hiddenSetTourForm')">Đặt ngay</button>
                     </div>
-                    <script>
-                        
-                    </script>
                 </div>
                 <div class="rowTourInfor">
                     <p style="color: red; text-align: center;">Liên hệ càng sớm càng nhiều ưu đãi</p>
@@ -105,7 +102,7 @@
         <button id="outForm" class="outForm">✖️</button>
         <form th:action= "@{/guest/adviceRequest}" method="post" th:object="${adviceRequestDto}">
             <!-- một input hidden để lấy thông tin tour cho adviceRequest -->
-            <input  name="tourId"  th:attr="value = ${tour.id}">
+            <input type="hidden"  name="tourId"  th:attr="value = ${tour.id}">
             <!-- tên khách hàng-->
             <div class="rowForm">
                 <div class="rowFormLeft">

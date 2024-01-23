@@ -12,6 +12,16 @@
     /* căn giữa màn hih */
     margin: 0 auto;
 }
+
+
+.search-box-mini {
+    display: flex;
+    align-items: center;
+}
+
+.search-box-mini input {
+    margin-right: 10px; /* Khoảng cách giữa input và nút tìm kiếm */
+}
 .dropdown-content {
     display: flex;
     flex-direction: row;
@@ -48,7 +58,8 @@
 
 .tour img {
     width: 100%;
-    height: auto;
+    height: 300px;
+    object-fit: cover;
 }
 
 .tour > div {

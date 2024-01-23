@@ -11,6 +11,40 @@
 
     <title>Web du lịch cụa Phong</title>
 </head>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        $(".search-box input").on("input", function() {
+            var searchValue = $(this).val().toLowerCase();
+
+            /*[[(${tourNameList})]] sẽ chứa danh sách tourNameList từ model attribute*/
+            var tourNameList = /*[[(${tourNameList})]]*/ [];
+
+            var filteredList = tourNameList.filter(function(tourName) {
+                return tourName.toLowerCase().includes(searchValue);
+            });
+
+            var previewList = $(".search-box .preview-list");
+            previewList.empty();
+            filteredList.forEach(function(tourName) {
+                previewList.append("<li onclick=\"updateSearchInput(\'"+ tourName + "\')\">" + tourName + "</li>");
+            });
+
+            if (searchValue.length > 0) {
+                showPreview();
+            } else {
+                hidePreview();
+            }
+        });
+
+        function showPreview() {
+            $(".search-box .preview-list").show();
+        }
+
+        function hidePreview() {
+            $(".search-box .preview-list").hide();
+        }
+    });
+</script>
 <body>
     <nav class="nav" >
     
@@ -25,11 +59,18 @@
     <div class="mainContent">
         <div clas="headMainContent">
             <!-- thanh drop down lựa chọn kiẻu sắp xếp dữ liệu-->
-            <div class="row">
+            <div class="row" style="display: flex; justify-content:space-between;   ">
                 <!--thêm thanh tìm kiếm -->
+                <div class="search-box-mini">
+                    <input class="search-box-mini" id="searchBoxInput" type="text" name="scheduleSearch" placeholder="Tìm kiếm">
+                        <button type="submit" onclick="searchTour()" > Tìm kiếm
+                            <a th:href="@{/tour/searchTour(scheduleSearch=${scheduleSearch})}" id="searchLink" style="display: none;"> Tìm kiếm</a>
+                        </button>
+                    <ul class="preview-list"></ul>
+                </div>
 
                 <div class="dropdown-content">
-                    <p>Hiển thị cả 3 kết quả</p>
+                    <p>Hiển thị cả kết quả</p>
                     <div>
                         <select name="Sắp xếp theo" id="filter-content">
                             <option value="increPrice">Giá tăng dần</option>
@@ -43,11 +84,11 @@
             </div>
                 
             <div>
-                <div class="row">
+                <div class="row" >
                     <div class="box-tour-content">
                         
                         <div class="tour" th:each=" tour : ${listTour}">
-                            <img style="size: 300px;" src="https://cdn.pixabay.com/photo/2015/08/19/17/14/vietnam-896307_1280.jpg" alt="Tour 3">
+                            <img style="size: 300px;" th:src="'data:image/jpg;base64,'+ ${tour.image1}" alt="Tour 3">
                             <div class="tour-body-text">
                                 <h3><span th:text="${tour.tourName}"></span></h3>
                                 <p><span th:text="${tour.length}"></span></p>
@@ -71,3 +112,22 @@
         <p>&copy; 2023 Pham Phong Website</p>
     </footer>
 </body>
+<body>
+    <script>
+    function updateSearchInput(value) {
+        // Lấy ra phần tử input
+        var searchInput = document.getElementById('searchBoxInput');
+        
+        // Gán giá trị từ thẻ li vào input
+        searchInput.value = value;
+
+        // Ẩn danh sách xem trước
+        document.querySelector('.preview-list').style.display = 'none';
+    }
+    function searchTour() {
+        var scheduleSearch = document.getElementById('searchBoxInput').value;
+        document.getElementById('searchLink').href = "/guest/tour/searchTour?scheduleSearch=" + encodeURIComponent(scheduleSearch);
+        document.getElementById('searchLink').click();
+    }
+    </script>
+</html>

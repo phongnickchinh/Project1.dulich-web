@@ -11,6 +11,7 @@ import com.pweb.dulich.dto.AdviceRequestDto;
 import com.pweb.dulich.dto.TourWithStartDateDto;
 import com.pweb.dulich.dto.BookingRequestDto;
 import com.pweb.dulich.dto.ImageWithId;
+import com.pweb.dulich.dto.TourIndex;
 import com.pweb.dulich.model.AdviceRequest;
 import com.pweb.dulich.model.BookingRequest;
 import com.pweb.dulich.service.AdviceRequestService;
@@ -23,6 +24,8 @@ import org.springframework.ui.Model;
 import com.pweb.dulich.model.StartDateTour;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Base64;
+
 import org.springframework.web.bind.annotation.RequestBody;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -86,15 +89,28 @@ public class TourController {
     public String tourView(Model model) {
         List<Tour> listTour = tourService.getAllTour();
         //đối với mỗi tour lấy ngày đi
-        for (Tour tourt : listTour) {
-            List<StartDateTour> listStartDateTour = tourService.getStartDateTourByTourId(tourt.getId());
-            //xếp ngày đi tăng dần
-            listStartDateTour.sort((StartDateTour o1, StartDateTour o2) -> o1.getStartDate().compareTo(o2.getStartDate()));
-            //gán lại cho tour
-            tourt.setStartDates(listStartDateTour);
+        List<TourIndex> listTourIndex = new ArrayList<>();
+        for (Tour tour : listTour) {
+            //lấy ra hinh ảnh đầu tiên
+            Image image = imageService.findByTourIdAndImageNumber(tour.getId(), 1);
+            //chuyển thành base64
+            //kiểm tra null
+            TourIndex tourIndex = new TourIndex();
+            tourIndex.setId(tour.getId());
+            tourIndex.setTourName(tour.getTourName());
+            tourIndex.setPrice(tour.getPrice());
+            tourIndex.setDescription(tour.getDescription());
+            tourIndex.setLength(tour.getLength());
+            tourIndex.setSchedule(tour.getSchedule());
+            //set ảnh
+            if(image !=null){
+                String imagebase64 = Base64.getEncoder().encodeToString(image.getImageData());
+                tourIndex.setImage1(imagebase64);
+            }
+            listTourIndex.add(tourIndex);
         }
 
-        model.addAttribute("listTour", listTour);
+        model.addAttribute("listTour", listTourIndex);
         return "guest/tour";
     }
 
@@ -168,6 +184,44 @@ public class TourController {
         model.addAttribute("message", "Gửi yêu cầu đặt tour thành công");
         bookingRequestService.createBookingRequest(bookingRequest);
         return "redirect:/guest/tourInfor?id="+ tourId;
+    }
+
+    @GetMapping("/tour/searchTour")
+    public String searchTour(@RequestParam("scheduleSearch") String tourName, Model model) {
+        //tìm kiếm tour có tên chứa touName
+        List<Tour> listTour = tourService.searchTour(tourName);
+        List<TourIndex> listTourIndex = new ArrayList<>();
+        List<Tour> fullTour = tourService.getAllTour();
+        //với mỗi tour lấy ra hinh ảnh đầu tiên
+        for (Tour tour : listTour) {
+            Image image = imageService.findByTourIdAndImageNumber(tour.getId(), 1);
+            //chuyển thành base64
+            //kiểm tra null
+            
+            TourIndex tourIndex = new TourIndex();
+            tourIndex.setId(tour.getId());
+            tourIndex.setTourName(tour.getTourName());
+            tourIndex.setPrice(tour.getPrice());
+            tourIndex.setDescription(tour.getDescription());
+            tourIndex.setLength(tour.getLength());
+            tourIndex.setSchedule(tour.getSchedule());
+            //set ảnh
+            if(image !=null){
+                String imagebase64 = Base64.getEncoder().encodeToString(image.getImageData());
+                tourIndex.setImage1(imagebase64);
+            }
+            listTourIndex.add(tourIndex);
+        }
+        List<String> scheduleList = new ArrayList<>();
+        for (Tour tour : fullTour) {
+            //kiểm tra null và kiểm tra rỗng
+            if (tour.getSchedule() != null && !tour.getSchedule().isEmpty()) {
+                scheduleList.add(tour.getSchedule());
+            }
+        }
+        model.addAttribute("listTour", listTourIndex);
+        model.addAttribute("tourNameList", scheduleList);
+        return "guest/tour";
     }
     
 }
