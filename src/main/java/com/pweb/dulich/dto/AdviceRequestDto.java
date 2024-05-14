@@ -1,9 +1,6 @@
 package com.pweb.dulich.dto;
 
 import java.util.Date;
-
-import com.pweb.dulich.model.Tour;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

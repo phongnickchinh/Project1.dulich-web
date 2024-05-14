@@ -25,13 +25,6 @@ import com.pweb.dulich.model.StartDateTour;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Base64;
-
-import org.springframework.web.bind.annotation.RequestBody;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
-import java.time.LocalDate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -159,7 +152,6 @@ public class TourController {
         Long tourId = Long.parseLong(bookingRequestDto.getTourId());
         //chuyển đổi startDate từ String yyyy-mm-dd sang Date
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
         Date startDate = null;
         try {
             startDate = inputFormat.parse(bookingRequestDto.getStartDate());
