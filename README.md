@@ -26,14 +26,19 @@ Phong Travel is a comprehensive web application designed for small and medium-si
 - **Database:** JPA/Hibernate ORM
 - **Security:** Spring Security
 
-## System Architecture
+## Main Fuction
+![Function Diagram](docs/images/function-diagram.png)
 
-![System Architecture](docs/images/system-structure.png)
+## Database Schema
 
-The application follows the MVC architecture:
-- **Models:** Tour, BookingRequest, AdviceRequest, Image, StartDateTour
-- **Controllers:** Guest controllers and Admin controllers for different functionalities
-- **Views:** Thymeleaf templates for dynamic content rendering
+![Database Schema](docs/images/database.png)
+
+The database design includes the following key tables:
+- **Tour:** Stores tour information including name, description, pricing, and schedules
+- **StartDateTour:** Manages available departure dates for each tour
+- **Image:** Contains tour images with references to their respective tours
+- **BookingRequest:** Tracks customer booking submissions with details about travelers
+- **AdviceRequest:** Records customer requests for additional tour information
 
 ## Screenshots
 
@@ -56,6 +61,21 @@ Detailed view of tour information including itinerary, schedule, and pricing.
 Interactive form for customers to book tours with price calculation.
 
 ![Booking Modal](docs/images/booking-popup.png)
+
+### Admin Tour Management
+Administrative interface for managing all tours in the system.
+
+![Tour Management](docs/images/manage_tour.png)
+
+### Admin Tour Details
+Interface for administrators to edit tour details and properties.
+
+![Change Tour Details](docs/images/change_detail.png)
+
+### Admin Request Handling
+Interface for handling customer booking and advice requests.
+
+![Handle Requests](docs/images/handle_request.png)
 
 ## Installation and Setup
 
@@ -124,4 +144,3 @@ dulich/
 - Responsive mobile design
 - Multi-language support
 - Tour reviews and ratings
-- Email notifications for booking confirmations
